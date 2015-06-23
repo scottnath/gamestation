@@ -1,0 +1,61 @@
+hello MOTHERFUCKER
+<hr>
+DOWNLOAD JQUERY TO USE LOCALLY MOTHERFUCKER
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<div id="select_div"><a href="Javascript:;" id="select_link">Testeringly</a></div>
+<ul id="games"></ul>
+<script type="text/javascript">
+function triggerGame(filename){
+	console.log(filename);
+  $.ajax({
+    crossDomain: true,
+    method: 'post',
+    url: 'http://gamestation.local:3000/game/'+filename,
+    success: function(result){
+      console.log('shityeah');
+      $("#test").html(result);
+    }
+  });
+
+}
+$(document).ready(function() {
+  var user, pass;
+
+  $.getJSON( "public/games.json", function( data ) {
+    var items = [];
+    $.each( data, function( key, val ) {
+      items.push( '<li id="' + key + '"><a href="Javascript:;" class="game-link" data-game-filename="' + val.filename + '">' + val.title +'</a></li>' );
+    });
+     
+    $('ul#games').html(items.join(''));
+
+    $('.game-link').click(function(){
+    	var filename = $(this).attr('data-game-filename');
+    	triggerGame(filename);
+    	console.log(filename + 'game triggered');
+    })
+  });
+
+  $("#select_link").click(function() {
+    // user = $("#user").val();
+    // pass = $("#password").val();
+  //    $.ajax({
+    //   type: 'POST',
+    //   url: 'http://localhost:3000/endpoint',
+    //   data: data,
+    //   success: success,
+    //   dataType: dataType
+    // });
+    $.ajax({
+      crossDomain: true,
+      method: 'post',
+      url: 'http://gamestation.local:3000/game/10',
+      success: function(result){
+        console.log('shityeah');
+        $("#test").html(result);
+      }
+    });
+
+  });
+});
+</script>
