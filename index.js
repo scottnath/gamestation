@@ -39,6 +39,9 @@ var server = app.listen(3000, function () {
 
 function gameKicker(gamefilename){
 //	exec('/opt/retropie/emulators/retroarch/bin/retroarch -L /opt/retropie/libretrocores/lr-imame4all/mame2000_libretro.so /home/pi/RetroPie/roms/mame-mame4all/' + gamefilename + '.zip --config /opt/retropie/configs/all/retroarch.cfg', function(error, stdout, stderr) {
+//	
+//	// NEED TO EXIT GAME FIRST
+//	// BONUS ROUND: EXIT TO NODE APP!
 	exec('/opt/retropie/supplementary/runcommand/runcommand.sh 0 _SYS_ mame-mame4all ' + gamefilename + '.zip', function(error, stdout, stderr) {
 	  if (!error) {
 	    console.log('// things worked!');
